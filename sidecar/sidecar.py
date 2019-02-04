@@ -5,6 +5,10 @@ import requests
 from requests.packages.urllib3.util.retry import Retry
 from requests.adapters import HTTPAdapter
 
+configuration = client.Configuration()
+configuration.verify_ssl = False
+configuration.debug = False
+client.Configuration.set_default(configuration)
 
 def writeTextToFile(folder, filename, data):
     with open(folder +"/"+ filename, 'w') as f:
