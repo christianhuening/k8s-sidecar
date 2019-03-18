@@ -1,7 +1,7 @@
-FROM       python:3.7-slim-stretch
-RUN        pip install kubernetes==8.0.1
-RUN        pip install websocket-client==0.47.0
-COPY       sidecar/sidecar.py /app/
+FROM        python:3.7-slim-stretch
+WORKDIR     /app
+COPY        requirements.txt .
+RUN         pip install -r requirements.txt
+COPY        sidecar/sidecar.py .
 ENV         PYTHONUNBUFFERED=1
-WORKDIR    /app/
-CMD [ "python", "-u", "/app/sidecar.py" ]
+CMD         [ "python", "-u", "/app/sidecar.py" ]
